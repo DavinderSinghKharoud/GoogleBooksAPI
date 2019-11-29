@@ -22,7 +22,6 @@ import java.util.List;
 
 public final class QueryUtils {
 
-    //Tag for the log messages
     private static final String LOG_TAG = QueryUtils.class.getName();
 
     private QueryUtils() {
@@ -67,8 +66,8 @@ public final class QueryUtils {
 
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* miliseconds */);
-            urlConnection.setConnectTimeout(15000 /* miliseconds */);
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(15000);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -87,9 +86,6 @@ public final class QueryUtils {
                 urlConnection.disconnect();
             }
             if (inputStream != null) {
-                // Closing the input stream could throw an IOException, which is why
-                // the makeHttpRequest(URL url) method signature specifies, than an IOException
-                // could be thrown.
                 inputStream.close();
             }
         }
@@ -141,28 +137,18 @@ public final class QueryUtils {
         //Create an empty ArrayLis, so that we can add books to it.
         List<Books> books = new ArrayList<>();
 
-        // Try to parse the JSON response string. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
-
         try {
 
             //Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(booksJSON);
 
-            //Extract the JSONArray associated with the key called "items"
-            //which represents the list of books.
             JSONArray booksArray = baseJsonResponse.getJSONArray("items");
 
-            //For each book in the booksArray, create an {@link Books} object
             for (int index = 0; index < booksArray.length(); index++) {
 
                 //Get a single book at specific index within the list of books
                 JSONObject currentBook = booksArray.getJSONObject(index);
 
-                //For a given book, extract the JSONobject associated with the
-                //key called "volumeInfo", which represents a list of all information
-                //of that book
                 JSONObject info = currentBook.getJSONObject("volumeInfo");
 
                 // Extract the value for the key called "title"
@@ -175,7 +161,7 @@ public final class QueryUtils {
 
                 //if there are no authors it will set author to Not Specified
                 try {
-                    // Extract the JSONArray for the key called "authors"
+
                     JSONArray authors = info.getJSONArray("authors");
 
                     //if there are more than one authors then, we can add "etc" at the end of author
@@ -191,7 +177,6 @@ public final class QueryUtils {
                 }
 
                 // Extract the value for the key called "pageCount"
-                // save the pages
                 String pages;
                 try {
                     pages = String.valueOf(info.getInt("pageCount"));
@@ -200,30 +185,20 @@ public final class QueryUtils {
                 }
 
 
-
-
-                // Extract the JSONObject for the key called "imageLink"
-                //and getting the imageURL from the key called "thumbnail"
                 JSONObject imageLink = info.getJSONObject("imageLinks");
                 String imageURL = imageLink.getString("smallThumbnail");
 
                 // Extract the value for the key called "infoLink"
                 String infoURL = info.getString("infoLink");
 
-                // Create a new {@link Books} object with the title, author, imageURL,
-                // and infoURL from the JSON response.
                 Books book = new Books(title, author, pages, imageURL, infoURL);
 
-                // Add the new {@link Books} to the list of books.
                 books.add(book);
 
 
             }
 
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
             Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
         }
         return books;

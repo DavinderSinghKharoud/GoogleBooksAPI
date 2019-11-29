@@ -30,50 +30,22 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements androidx.loader.app.LoaderManager.LoaderCallbacks<List<Books>> {
 
 
-    /*
-    * Edit text in which user write the text to search the books
-    */
     private EditText searchQuery;
 
-    /**
-     * ListView in which books will be displayed
-     */
     private ListView booksListView;
 
-    /**
-     * URL that will be used to fetch the data about the books
-     */
     private static String Books_Request_URL = null;
 
-    /**
-     * Adapter for the list of books
-     */
     private BooksAdapter mAdapter;
 
-    /**
-     * Constant value for the Books loader ID. We can choose any integer.
-     * This really only comes into play if you're using multiple loaders.
-     */
     private static final int BOOKS_LOADER_ID = 1;
 
-    /**
-     * Defining loadingIndicator
-     */
     private ProgressBar loadingIndicator;
 
-    /**
-     * Defining ConnectivityManger variable
-     */
     private ConnectivityManager connMgr;
 
-    /**
-     * Defining NetworkInfo variable
-     */
     private NetworkInfo networkInfo;
 
-    /**
-     * TextView that is displayed when the list is empty
-     */
     private TextView mEmptyStateTextView;
 
 
@@ -90,19 +62,15 @@ public class MainActivity extends AppCompatActivity implements androidx.loader.a
         //Create a new Adapter that takes an empty list of books as input.
         mAdapter = new BooksAdapter(this, new ArrayList<Books>());
 
-        //Set the adapter on the {@Link ListView}
-        //so the list can be populated in the user interface.
         booksListView.setAdapter(mAdapter);
 
         //Assigning the progressBar
         loadingIndicator = (ProgressBar) findViewById(R.id.simpleProgressBar);
 
-        //Set an item click listener on the ListView, which sends and intent to the web browser
-        //to open a website with more information about the selected book.
         booksListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int positon, long l) {
-                //Find the current book that was clicked on.
+
                 Books currentBook = mAdapter.getItem(positon);
 
                 //Convert the String URL into a URI object ( to pass into the intent constructor)
@@ -111,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements androidx.loader.a
                 //Create a new intent to view the book URI
                 Intent websiteIntent = new Intent(Intent.ACTION_VIEW, bookUri);
 
-                //send the intent to launch the new activity.
                 startActivity(websiteIntent);
 
 
@@ -151,10 +118,6 @@ public class MainActivity extends AppCompatActivity implements androidx.loader.a
 
             //Get a reference to the LoaderManager, in order to interact with loaders.
             LoaderManager loaderManager = getSupportLoaderManager();
-
-            // Restart the loader. Pass in the int ID constant defined above and pass in null for
-            // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
-            // because this activity implements the LoaderCallbacks interface).
 
             //we are using loaderManger.restartLoader(), instead of loaderManager.initLoader
             //because we need to restart the loader each time the user enter some new query and search.

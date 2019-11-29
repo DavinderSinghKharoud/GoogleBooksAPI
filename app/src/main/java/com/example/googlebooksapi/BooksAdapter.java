@@ -43,7 +43,6 @@ public class BooksAdapter extends ArrayAdapter<Books> {
         //Find the book at the given postion in the list of books.
         Books currentBook = getItem(position);
 
-        //Find the ImageView with view ID imageURL
         ImageView imageURL=(ImageView) listItemView.findViewById(R.id.imageURL);
 
         //Parsing the imageURL from JSON
@@ -51,23 +50,16 @@ public class BooksAdapter extends ArrayAdapter<Books> {
         //Using Picasso library for fetching image from URL
         Picasso.with(getContext()).load(BookImagesUrl).into(imageURL);
 
-
-        //Find the TextView with  view ID title
         TextView title=(TextView)listItemView.findViewById(R.id.title);
-        //Setting the title
         title.setText(currentBook.getTitle());
 
-        //Find the TextView with  view ID pages
         TextView pages=(TextView)listItemView.findViewById(R.id.pages);
-        //Setting the pages
         pages.setText("Pages:"+currentBook.getPages());
 
-        //Find the TextView with view ID author
         TextView author=(TextView)listItemView.findViewById(R.id.author);
-        //Setting the author
         author.setText("By:"+currentBook.getAuthor());
 
-        // Return the list item view that is now showing the appropriate data
+
         return listItemView;
     }
 }
