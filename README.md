@@ -1,7 +1,7 @@
 # GoogleBooksAPI
 
 Will be update in few weeks include New Material Design, SearchView.
->Its an old project done during my post graduation diploma.
+>It is an old project done during my post graduation diploma.
 ## Tools And Libraries Used:
 
 
