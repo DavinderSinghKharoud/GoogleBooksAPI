@@ -152,7 +152,15 @@ public final class QueryUtils {
                 JSONObject info = currentBook.getJSONObject("volumeInfo");
 
                 // Extract the value for the key called "title"
-                String title = info.getString("title");
+                String tempTitle=info.getString("title");
+
+                String title="";
+                if(tempTitle.length() > 25) {
+                    title = tempTitle.substring(0, 25) + "...";
+                }
+                else{
+                    title=tempTitle;
+                }
 
 
 
@@ -180,10 +188,24 @@ public final class QueryUtils {
                 String pages;
                 try {
                     pages = String.valueOf(info.getInt("pageCount"));
+
                 }catch (Exception e){
                     pages="Not Specified";
                 }
 
+
+                String price;
+                try {
+                    JSONObject saleInfo=currentBook.getJSONObject("saleInfo");
+                    price=saleInfo.getString("saleability");
+                    if(price.equals("NOT_FOR_SALE")){
+                        price="Not For Sale";
+                    }else if(price.equals("FOR_SALE")){
+                        price="For Sale";
+                    }
+                }catch (Exception e){
+                    price="Not Specified";
+                }
 
                 JSONObject imageLink = info.getJSONObject("imageLinks");
                 String imageURL = imageLink.getString("smallThumbnail");
@@ -191,7 +213,7 @@ public final class QueryUtils {
                 // Extract the value for the key called "infoLink"
                 String infoURL = info.getString("infoLink");
 
-                Books book = new Books(title, author, pages, imageURL, infoURL);
+                Books book = new Books(title, author, pages, imageURL, infoURL,price);
 
                 books.add(book);
 

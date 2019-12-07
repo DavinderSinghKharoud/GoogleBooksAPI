@@ -37,28 +37,30 @@ public class BooksAdapter extends ArrayAdapter<Books> {
 
         View listItemView = convertView;
         if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.books_list_item, parent, false);
+            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.item_book, parent, false);
         }
 
         //Find the book at the given postion in the list of books.
         Books currentBook = getItem(position);
 
-        ImageView imageURL=(ImageView) listItemView.findViewById(R.id.imageURL);
+        ImageView imageURL=(ImageView) listItemView.findViewById(R.id.book_item_img);
 
         //Parsing the imageURL from JSON
         String BookImagesUrl=currentBook.getImage();
         //Using Picasso library for fetching image from URL
         Picasso.with(getContext()).load(BookImagesUrl).into(imageURL);
 
-        TextView title=(TextView)listItemView.findViewById(R.id.title);
+        TextView title=(TextView)listItemView.findViewById(R.id.book_title);
         title.setText(currentBook.getTitle());
 
-        TextView pages=(TextView)listItemView.findViewById(R.id.pages);
+        TextView pages=(TextView)listItemView.findViewById(R.id.pages_item_view);
         pages.setText("Pages:"+currentBook.getPages());
 
-        TextView author=(TextView)listItemView.findViewById(R.id.author);
+        TextView author=(TextView)listItemView.findViewById(R.id.Author_book_item);
         author.setText("By:"+currentBook.getAuthor());
 
+        TextView price=listItemView.findViewById(R.id.price);
+        price.setText("Price: "+currentBook.getPrice());
 
         return listItemView;
     }
