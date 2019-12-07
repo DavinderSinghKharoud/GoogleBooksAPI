@@ -27,6 +27,6 @@ The book view contains
 4. Author
 5. Price
 
-<img src="https://github.com/DavinderSinghKharoud/Images/blob/master/searchAndroid.png" width="180" height="370"><img src="https://github.com/DavinderSinghKharoud/Images/blob/master/implicitIntentBooks.png" width="180" height="370">
+<img src="https://github.com/DavinderSinghKharoud/Images/blob/master/searchAndroidImage.png" width="180" height="370"><img src="https://github.com/DavinderSinghKharoud/Images/blob/master/implicitIntentBooks.png" width="180" height="370">
 
 Whenever the user click on the book, application open that particaular book using "books.google.com/...." on the web browser.
