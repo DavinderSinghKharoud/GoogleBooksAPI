@@ -14,6 +14,7 @@ Will be update in few weeks include New Material Design, SearchView.
 7. Picaso Library
 8. Implicit Intent
 9. ConnectivityManager
+10. Constraint Layout
  and more.
 
 ___
@@ -24,6 +25,7 @@ The book view contains
 2. Title
 3. Pages
 4. Author
+5. Price
 
 <img src="https://github.com/DavinderSinghKharoud/Images/blob/master/searchAndroid.png" width="180" height="370"><img src="https://github.com/DavinderSinghKharoud/Images/blob/master/implicitIntentBooks.png" width="180" height="370">
 
