@@ -1,7 +1,6 @@
 # GoogleBooksAPI
 
-Will be update in few weeks include New Material Design, SearchView.
->It is an old project done during my post graduation diploma.
+>It is an old project done during my post-graduation diploma.
 ## Tools And Libraries Used:
 
 
@@ -11,7 +10,7 @@ Will be update in few weeks include New Material Design, SearchView.
 5. AsyncTask Loader
 5. HttpURLConnection
 6. Reading JSON data
-7. Picaso Library
+7. Picasso Library
 8. Implicit Intent
 9. ConnectivityManager
 10. Constraint Layout
@@ -19,7 +18,7 @@ Will be update in few weeks include New Material Design, SearchView.
 
 ___
 * ### Application Functions
-When user type the text in the search view, and click on the search button. Application fetch the books using google books API, parse the JSON data and display in the listView using custom adapter.
+The application fetches the books using google books API, parses the JSON data and displays them in the listView using a custom adapter.
 The book view contains
 1. Image
 2. Title
@@ -29,4 +28,4 @@ The book view contains
 
 <img src="https://github.com/DavinderSinghKharoud/Images/blob/master/searchAndroidImage.png" width="180" height="370"><img src="https://github.com/DavinderSinghKharoud/Images/blob/master/implicitIntentBooks.png" width="180" height="370">
 
-Whenever the user click on the book, application open that particaular book using "books.google.com/...." on the web browser.
+Whenever the user clicks on the book, the application opens that particular book using "books.google.com/...." on the web browser.
